@@ -2,10 +2,11 @@ package com.example.app1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,9 +16,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void SayHello(View view) {
-        Log.i("Info", "Hello World!");
-        TextView tv = findViewById(R.id.Header1);
-        tv.setText("Hello World!");
+    public void LoginSubmit(View view) {
+        Log.i("Info", "Clicked Submit Button");
+        EditText un = findViewById(R.id.username);
+        String UserNameEntered = un.getText().toString();
+        Log.i( "INFO", "UserName entered is " + UserNameEntered);
+        EditText pw = findViewById(R.id.password);
+        String PassWordEntered = pw.getText().toString();
+        Log.i("INFO", "Password entered is " + PassWordEntered);
+
+        Intent UserConfirmationActivityIntent = new Intent(getApplicationContext(), UserConfirmationActivity.class);
+        UserConfirmationActivityIntent.putExtra("username", UserNameEntered);
+        UserConfirmationActivityIntent.putExtra("password", PassWordEntered);
+        startActivity(UserConfirmationActivityIntent);
     }
 }
